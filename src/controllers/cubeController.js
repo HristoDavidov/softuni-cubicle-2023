@@ -7,7 +7,7 @@ router.get('/create', (req, res) => {
 });
 
 router.post('/create', (req, res) => {
-    const{ 
+    const {
         name,
         description,
         imageUrl,
@@ -25,7 +25,12 @@ router.post('/create', (req, res) => {
 });
 
 router.get('/:cubeId/details', (req, res) => {
-   const cube =  cubeManager.getOne(req.params.cubeId);
+    const cube = cubeManager.getOne(req.params.cubeId);
+
+    if (!cube) {
+        return res.redirect('/404');
+    };
+
     res.render('details', { cube });
 });
 
