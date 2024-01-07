@@ -1,8 +1,6 @@
-const uniqid = require('uniqid');
 const Cube  = require('../models/Cube');
 
-
-exports.getAll =async (search, from, to) => {
+exports.getAll = async (search, from, to) => {
 
   let result = await Cube.find().lean();
 
