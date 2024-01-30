@@ -27,7 +27,7 @@ router.post('/create', async (req, res) => {
 
 router.get('/:cubeId/details', async (req, res) => {
 
-    const cube = await cubeManager.getOne(req.params.cubeId).lean();
+    const cube = await cubeManager.getOneWhitAccessories(req.params.cubeId).lean();
    
 
     if (!cube) {
