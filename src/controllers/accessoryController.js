@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const accessoryMenager = require('../managers/accessoryMeneger');
+const accessoryManager = require('../managers/accessoryManager');
 
 router.get('/create', (req, res) => {
     res.render('accessory/create');
@@ -9,7 +9,7 @@ router.get('/create', (req, res) => {
 router.post('/create', async (req, res) =>{
     const { name, description, imageUrl } = req.body;
 
-    await accessoryMenager.create({name, description, imageUrl});
+    await accessoryManager.create({name, description, imageUrl});
 
     res.redirect('/');
 });
