@@ -21,7 +21,7 @@ userShema.virtual('repeatPassword')
         };
     });
 
-userShema.pre('save', async function(){
+userShema.pre('save', async function () {
     const hash = await bcrypt.hash(this.password, 10);
     this.password = hash;
 });
