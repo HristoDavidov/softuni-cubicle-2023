@@ -1,8 +1,11 @@
 const bcrypt = require('bcrypt');
+const jwt = require('../lib/jwt');
 
 const User = require('../models/User');
+const { SECRET } = require('../config/config');
 
 exports.register = (userData) => User.create(userData);
+
 
 exports.login = async (username, password) => {
     //TODO find user
@@ -19,6 +22,14 @@ exports.login = async (username, password) => {
         throw new Error('Cannot find user or password');
     };
 
-    //return user
-    return user;
+    const payload = {
+        _id: user._id,
+        username: user.username,
+
+    };
+
+    const token = await jwt.sing(payload, SECRET, {expiresIn: '2d'});
+
+    //return token
+    return token;
 };
